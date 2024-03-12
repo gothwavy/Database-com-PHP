@@ -8,9 +8,10 @@
 
 <body>
   <?php
+  include('menu.php');
   include 'conexao.php';
   ?>
-  <a href="incluir_categorias.php"><button type="button" class="btn btn-outline-primary">Botao</button></a>
+  <a href="incluir_categorias.php"><button type="button" id="btnincluir" class="btn btn-dark">Incluir</button></a>
   <br>
   <table class="table table-hover">
     <thead>
@@ -18,7 +19,6 @@
         <th>ID. Categoria</th>
         <th>Item</th>
         <th>Descrição</th>
-        <th>Valor</th>
         <th>Editar</th>
       </tr>
     </thead>
@@ -28,6 +28,7 @@
       $busca_categoria = mysqli_query($conexao, $sql);
       while ($array = mysqli_fetch_array($busca_categoria)) {
         $id_categoria = $array['id_categoria'];
+        $item_categoria = $array['item_categoria'];
         $desc_categoria = $array['desc_categoria'];
         ?>
         <tr>
@@ -35,10 +36,13 @@
             <?php echo $id_categoria ?>
           </td>
           <td>
+            <?php echo $item_categoria ?>
+          </td>
+          <td>
             <?php echo $desc_categoria ?>
           </td>
           <td <a href="btn btn-primary"><a href="editar_categoria.php?id_categoria=
-              <?php echo $id_categoria ?>"><button type="button" class="btn btn-outline-warning">Alterar</button></td>
+              <?php echo $id_categoria ?>"><button type="button" class="btn btn-dark">Alterar</button></td>
         </tr>
       <?php } ?>
     </tbody>
